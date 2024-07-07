@@ -1,0 +1,79 @@
+﻿@using Nop.Plugin.AddTicket.Myticket.Areas.Admin.Models
+@model MyTicketSearchModel
+@{
+    // //page title
+    // ViewBag.PageTitle = T("Admin.Vendors").Text;
+    // //active menu item (system name)
+    // NopHtml.SetActiveMenuItemSystemName("Vendors");
+}
+
+@* @{
+    const string hideSearchBlockAttributeName = "VendorsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+} *@
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+       Ticket List
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+             Add New Ticket
+        </a>
+@*         @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.VendorListButtons, additionalData = Model })
+ *@    
+     </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+    <div class="form-horizontal">
+        <div class="cards-group">
+ 
+            <div class="card card-default">
+                <div class="card-body">
+
+                    @await Html.PartialAsync("Table", new DataTablesModel
+                    {
+                       Name = "MyTicketRecord-grid",
+                       UrlRead = new DataUrl("List", "MyTicket", null),
+                       
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        ColumnCollection = new List<ColumnProperty>
+                        {
+                        new ColumnProperty(nameof(MyTicketModel.Name))
+                            {
+                                //Title = T("Admin.AddTicket.Myticket.MyTicketRecord.Fields.Name").Text,
+                                Title = "Name",
+                                Width = "300"
+                            },
+                        new ColumnProperty(nameof(MyTicketModel.Email))
+                            {
+                                   // Title = T("Admin.AddTicket.Myticket.MyTicketRecord.Fields.Email").Text,
+                                   Title = "Email",
+                                   Width = "300"
+                            },
+
+                        new ColumnProperty(nameof(MyTicketModel.Body))
+                            {
+                                   // Title = T("Admin.AddTicket.Myticket.MyTicketRecord.Fields.Body").Text,
+                                   Title = "Body",
+                                   Width = "300"
+                            } ,
+                        new ColumnProperty(nameof(MyTicketModel.Id))
+                            {
+                            Title = "Edit",
+                            Width = "100",
+                            ClassName =  NopColumnClassDefaults.Button,
+                            Render = new RenderButtonEdit(new DataUrl("Edit"))
+                            }
+                        }
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

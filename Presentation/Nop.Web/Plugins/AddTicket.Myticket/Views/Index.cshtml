@@ -1,0 +1,168 @@
+﻿@using Nop.Plugin.AddTicket.Myticket.Domain
+@model IList<MyTicketRecord>
+@{
+    Layout = "_ColumnsTwo";
+}
+
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = -1 })
+}
+
+<style>
+    .page-title {
+        margin-bottom: 20px;
+    }
+
+        .page-title .row {
+            align-items: center;
+        }
+
+    .table {
+        margin-top: 20px;
+        width: 100%; /* Ensure the table takes up full width */
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+        .btn .bi {
+            margin-right: 5px;
+        }
+
+    .table th, .table td {
+        vertical-align: middle;
+        border: 1px solid #dee2e6; /* Add border to each column */
+        text-align: center;
+        padding: 6px; /* Adjusted padding for table cells */
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 8px 0; /* Reduced margin for table header text */
+    }
+
+    .table td {
+        font-size: 14px;
+        margin: 2px 0; /* Adjusted margin for table data cells */
+    }
+
+    .page-body {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .table-responsive {
+        background: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    }
+
+    .ticket-list-text {
+        font-size: 14px;
+        margin: 2px 0; /* Adjusted margin for table text */
+    }
+
+    .create-ticket-btn {
+        font-size: 14px; /* Reduced size for the button */
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 6px 12px; /* Adjusted padding for button */
+        text-transform: uppercase;
+    }
+
+        .create-ticket-btn:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-primary, .btn-outline-warning {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        margin: 2px; /* Adjusted margin for buttons */
+    }
+
+    .btn-primary {
+        background-color: #28a745; /* Updated color for Edit button */
+        color: white;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #218838; /* Hover color for Edit button */
+        }
+
+    .btn-outline-warning {
+        border: 1px solid #ffc107;
+        color: #ffc107;
+    }
+
+        .btn-outline-warning:hover {
+            background-color: #ffd236;
+            border-color: #ffd236;
+            color: #333;
+        }
+</style>
+
+<div class="page">
+    <div class="page-title">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="page-title text-primary">Ticket List</h1>
+            </div>
+            <div class="col-md-6 text-end">
+                <a asp-controller="MyTicketView" asp-action="Create" class="btn create-ticket-btn">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Create New Ticket
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="ticket-list-text">Ticket Name</th>
+                        <th class="ticket-list-text">Email</th>
+                        <th class="ticket-list-text">Body</th>
+                        <th class="ticket-list-text">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td class="ticket-list-text">@obj.Name</td>
+                            <td class="ticket-list-text">@obj.Email</td>
+                            <td class="ticket-list-text">@obj.Body</td>
+                            <td class="text-center">
+                                <a asp-controller="MyTicketView" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-controller="MyTicketView" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-warning btn-sm">
+                                    <i class="bi bi-trash3"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+@using Nop.Plugin.AddTicket.Myticket.Areas.Admin.Models
+@using Nop.Plugin.AddTicket.Myticket.Domain
+@model MyTicketModel
+@{
+    Layout = "_ColumnsTwo";
+}
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = -1 })
+}
+
+<style>
+    .border {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-primary {
+        color: #007bff;
+        margin-bottom: 10px; /* Add margin after the header */
+        font-size: 20px; /* Increase font size of the header */
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px; /* Increase padding for input fields */
+        font-size: 16px; /* Increase font size of input fields */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px; /* Add margin after each input field */
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            outline: 0;
+            box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+        }
+
+    .text-danger {
+        font-size: 14px; /* Increase font size of validation messages */
+    }
+
+    .btn {
+        padding: 12px 20px; /* Increase padding for buttons */
+        font-size: 16px; /* Increase font size of buttons */
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+    .form-label-bold {
+        font-weight: bold;
+        margin-bottom: 6px; /* Add margin below each label */
+    }
+</style>
+
+<form method="post" asp-action="Edit">
+    <div class="border p-5 mt-5">
+        <div class="row pb-1">
+            <h2 class="text-primary">Edit Ticket</h2>
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-4">
+            <label asp-for="Name" class="form-label-bold"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Email" class="form-label-bold"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Body" class="form-label-bold"></label>
+            <input asp-for="Body" class="form-control" />
+            <span asp-validation-for="Body" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        <a asp-controller="MyTicketView" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+</form>

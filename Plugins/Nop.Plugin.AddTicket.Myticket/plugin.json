@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Add Ticket",
+  "FriendlyName": "Must be assigned to customer role",
+  "SystemName": "AddTicket.Myticket",
+  "Version": "4.70.3",
+  "SupportedVersions": [ "4.70" ],
+  "Author": "Md Shehab Hossain",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.AddTicket.Myticket.dll",
+  "Description": "This plugin allows you to configure new ticket from customer groups (roles)"
+}

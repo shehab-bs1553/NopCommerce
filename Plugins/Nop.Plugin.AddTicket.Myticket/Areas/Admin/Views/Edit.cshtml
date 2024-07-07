@@ -1,0 +1,39 @@
+@using Nop.Plugin.AddTicket.Myticket.Areas.Admin.Models
+@model MyTicketModel
+
+
+@{
+   // Layout = "_AdminLayout";
+    //page title
+   // ViewBag.PageTitle = T("Admin.Misc.Employees.EditDetails").Text;
+    //active menu item (system name)
+   // NopHtml.SetActiveMenuItemSystemName("Employees")
+}
+
+<form asp-controller="MyTicket" asp-action="Edit" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            Edit Details
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">Back to List</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+               Save 
+            </button>
+            <button type="submit" name="save-continue" class="btn btn-primary">
+                <i class="far fa-save"></i>
+               Save continue 
+            </button>
+            <span id="MyTicket-delete" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+                Delete
+            </span>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/AddTicket.Myticket/Areas/Admin/Views/_CreateOrUpdate.cshtml", Model)
+</form>
+<nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="MyTicket-delete" />
