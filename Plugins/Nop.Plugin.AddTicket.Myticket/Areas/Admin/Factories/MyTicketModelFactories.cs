@@ -38,7 +38,9 @@ public class MyTicketModelFactories : IMyTicketModelFactories
         MyTicketRecord employee, bool excludeProperties = false)
     {
         if (employee != null)
+        {
             if (model == null)
+            {
                 //fill in model values from the entity
                 model = new MyTicketModel()
                 {
@@ -46,8 +48,9 @@ public class MyTicketModelFactories : IMyTicketModelFactories
                     Id = employee.Id,
                     Email = employee.Email,
                     Body = employee.Body
-
                 };
+            }
+        }
         return model;
     }
 

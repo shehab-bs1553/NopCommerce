@@ -34,7 +34,6 @@ public class MyTicketController : BasePluginController
         return Json(model);
     }
 
-
     public async Task<IActionResult> Create()
     {
         var model = await _myTicketModelFactories.PrepareMyTicketModelAsync(new MyTicketModel(), null);

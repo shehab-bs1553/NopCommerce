@@ -71,18 +71,6 @@ public class MyTicketViewController : BasePluginController
         return View("~/Plugins/AddTicket.Myticket/Views/Edit.cshtml", model);
     }
 
-    //[HttpPost]
-    //public async Task<IActionResult> Edit(MyTicketRecord model)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        await _myTicketService.UpdateTicketAsync(model);
-    //        return RedirectToAction("Index");
-    //    }
-    //    return View("~/Plugins/AddTicket.Myticket/Views/Edit.cshtml", model);
-    //}
-
-
     [HttpPost]
     public async Task<IActionResult> Edit(MyTicketModel model)
     {
